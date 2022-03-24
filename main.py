@@ -7,7 +7,7 @@ from telebot import types
 from typing import List
 import json
 
-#token = os.getenv('TOKEN_BOT')
+token = os.getenv('TOKEN_BOT')
 
 # bot init
 bot = telebot.TeleBot(token)
