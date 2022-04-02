@@ -166,13 +166,8 @@ def startWatching(message):
     try:
         print('startWatching started !!!!!!!')
         while is_watching:
-            print('watching...')
             now = datetime.now()
-            print('now:')
-            print(now)
             current_time = now.strftime("%H:%M")
-            print('current_time with seconds:')
-            print(now.strftime("%H:%M:%S"))
             todays_date = date.today()
             week_num = get_week_num(todays_date.day, todays_date.month, todays_date.year)
             obj = MainResolver(getDecodedSchedule(number_group.selected_group))
@@ -184,7 +179,7 @@ def startWatching(message):
                     bot.send_message(message.chat.id, str(clas),
                                      disable_notification=bool(not clas.should_be_visited))
                     time.sleep(1)
-            if str(current_time) == '23:06' and todays_date.day % 7 != 5 and todays_date.day % 7 != 4 and now.strftime("%S") == '01':
+            if str(current_time) == '00:30' and todays_date.day % 7 != 5 and todays_date.day % 7 != 4 and now.strftime("%S") == '01':
                 tomorrow_date = todays_date + timedelta(days=1)
                 week_num = get_week_num(tomorrow_date.day, tomorrow_date.month, tomorrow_date.year)
                 obj = MainResolver(getDecodedSchedule(number_group.selected_group))
@@ -198,7 +193,6 @@ def startWatching(message):
                 bot.send_message(message.chat.id, reply, disable_web_page_preview=True)
                 time.sleep(1)
             time.sleep(1)
-        print('startWatching finished')
     except Exception as e:
         print(e)
         msg = bot.send_message(message.chat.id, "🎆Упс...Моніторинг сьогодні не працює :(🎆\nВиберіть іншу дію:")
