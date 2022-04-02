@@ -162,24 +162,17 @@ class WeekDayResolver:
 
 
 def startWatching(message):
-    def job():
-        todays_date = date.today()
-        tomorrow_date = todays_date + timedelta(days=1)
-        week_num = get_week_num(tomorrow_date.day, tomorrow_date.month, tomorrow_date.year)
-        obj = MainResolver(getDecodedSchedule(number_group.selected_group))
-        week = obj.getWeekByNumber(week_num)
-        day_classes = week.getDayClassesByDayName(WeekDayResolver.getDayNameByNumber(tomorrow_date.day % 7))
-        reply = 'Пари на завтра:\n'
-        for clas in day_classes:
-            reply += str(clas) + '\n'
-        if reply == 'Пари на завтра:\n':
-            reply = 'Завтра пар немає.'
-        bot.send_message(message.chat.id, reply, disable_web_page_preview=True)
 
     try:
+        print('startWatching started !!!!!!!')
         while is_watching:
+            print('watching...')
             now = datetime.now()
+            print('now:')
+            print(now)
             current_time = now.strftime("%H:%M")
+            print('current_time with seconds:')
+            print(now.strftime("%H:%M:%S"))
             todays_date = date.today()
             week_num = get_week_num(todays_date.day, todays_date.month, todays_date.year)
             obj = MainResolver(getDecodedSchedule(number_group.selected_group))
@@ -187,15 +180,27 @@ def startWatching(message):
             day_classes = week.getDayClassesByDayName(WeekDayResolver.getDayNameByNumber(todays_date.day % 7))
             for clas in day_classes:
                 clas_time = str(clas.getTime()[0])
-                if str(clas_time) == str(current_time):
+                if str(clas_time) == str(current_time) and now.strftime("%S") == '01':
                     bot.send_message(message.chat.id, str(clas),
                                      disable_notification=bool(not clas.should_be_visited))
-                    time.sleep(70)
-            if str(current_time) == '21:00' and todays_date.day % 7 != 5 and todays_date.day % 7 != 4:
-                job()
-                time.sleep(61)
-            time.sleep(2)
-    except Exception:
+                    time.sleep(1)
+            if str(current_time) == '23:06' and todays_date.day % 7 != 5 and todays_date.day % 7 != 4 and now.strftime("%S") == '01':
+                tomorrow_date = todays_date + timedelta(days=1)
+                week_num = get_week_num(tomorrow_date.day, tomorrow_date.month, tomorrow_date.year)
+                obj = MainResolver(getDecodedSchedule(number_group.selected_group))
+                week = obj.getWeekByNumber(week_num)
+                day_classes = week.getDayClassesByDayName(WeekDayResolver.getDayNameByNumber(tomorrow_date.day % 7))
+                reply = 'Пари на завтра:\n'
+                for clas in day_classes:
+                    reply += str(clas) + '\n'
+                if reply == 'Пари на завтра:\n':
+                    reply = 'завтра нема пар'
+                bot.send_message(message.chat.id, reply, disable_web_page_preview=True)
+                time.sleep(1)
+            time.sleep(1)
+        print('startWatching finished')
+    except Exception as e:
+        print(e)
         msg = bot.send_message(message.chat.id, "🎆Упс...Моніторинг сьогодні не працює :(🎆\nВиберіть іншу дію:")
         bot.register_next_step_handler(msg, process_schedule_step_1)
 
@@ -291,7 +296,6 @@ def process_schedule_step_1(message):
     except Exception as e:
         print(e)
         bot.reply_to(message, 'Щось пішло не так :(1')
-
 
 @bot.message_handler(commands=['stop_monitoring'])
 def process_stop_watching_schedule(message):
