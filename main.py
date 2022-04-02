@@ -179,7 +179,7 @@ def startWatching(message):
                     bot.send_message(message.chat.id, str(clas),
                                      disable_notification=bool(not clas.should_be_visited))
                     time.sleep(1)
-            if str(current_time) == '12:45' and todays_date.day % 7 != 5 and todays_date.day % 7 != 4 and now.strftime("%S") == '01':
+            if str(current_time) == '01:05' and todays_date.day % 7 != 5 and todays_date.day % 7 != 4 and now.strftime("%S") == '01':
                 tomorrow_date = todays_date + timedelta(days=1)
                 week_num = get_week_num(tomorrow_date.day, tomorrow_date.month, tomorrow_date.year)
                 obj = MainResolver(getDecodedSchedule(number_group.selected_group))
