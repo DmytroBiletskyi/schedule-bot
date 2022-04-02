@@ -240,7 +240,7 @@ def process_group_step(message):
     try:
         if message.text == '1' or message.text == '2':
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            #markup.add("Переглянути розклад", "Запустити Моніторинг")
+            markup.add("Переглянути розклад", "Запустити Моніторинг")
             markup.add("Назад👈")
             msg = bot.send_message(message.chat.id,
                                    f'Відстежується <u style="color:000000">{message.text} підгрупа</u>, виберіть наступну дію:',
