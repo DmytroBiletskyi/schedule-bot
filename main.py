@@ -166,8 +166,12 @@ class WeekDayResolver:
 
 def startWatching(message):
     try:
-        print('startWatching started !!!!!!!')
-        print(message.from_user.first_name)
+        print('startWatching started !!!!!!!\n-------------------------------------------------------------------------')
+        print(datetime.fromtimestamp(message.date).strftime('%Y-%m-%d %H:%M:%S'))
+        print('id:', message.from_user.id)
+        print('first_name and username:', message.from_user.first_name, message.from_user.username)
+        print('is_bot:', message.from_user.is_bot)
+        print('-------------------------------------------------------------------------')
         while is_watching:
             time.sleep(1)
             now = datetime.now()
