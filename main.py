@@ -4,6 +4,8 @@ import time
 from datetime import datetime, timedelta, date
 import telebot
 from telebot import types
+# from classes.MainResolver import MainResolver, WeekDayResolver
+# from examples_tests.decode_json import getDecodedSchedule
 from typing import List
 import json
 
@@ -164,6 +166,8 @@ class WeekDayResolver:
 
 def startWatching(message):
     try:
+        print('startWatching started !!!!!!!')
+        print(message.from_user.first_name)
         while is_watching:
             time.sleep(1)
             now = datetime.now()
@@ -204,6 +208,7 @@ def startWatching(message):
                 bot.send_message(message.chat.id, reply, disable_web_page_preview=True)
                 time.sleep(1)
             time.sleep(1)
+        print('startWatching finished')
     except Exception as e:
         print(e)
         msg = bot.send_message(message.chat.id, "🎆Упс...Моніторинг сьогодні не працює :(🎆\nВиберіть іншу дію:")
