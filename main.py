@@ -166,7 +166,8 @@ class WeekDayResolver:
 
 def startWatching(message):
     try:
-        print('startWatching started !!!!!!!\n-------------------------------------------------------------------------')
+        print(
+            'startWatching started !!!!!!!\n-------------------------------------------------------------------------')
         print(datetime.fromtimestamp(message.date).strftime('%Y-%m-%d %H:%M:%S'))
         print('id:', message.from_user.id)
         print('first_name and username:', message.from_user.first_name, message.from_user.username)
@@ -186,7 +187,8 @@ def startWatching(message):
                 class_time_datetime = datetime(todays_date.year, todays_date.month, todays_date.day,
                                                int(clas_time.split(':')[0]), int(clas_time.split(':')[1]))
                 if is_show_closest and class_time_datetime > now:
-                    bot.send_message(message.chat.id, 'наступна пара почнеться через: ' + str(time.strftime("%H:%M", time.gmtime((class_time_datetime - now).total_seconds()))) + ' г')
+                    bot.send_message(message.chat.id, 'наступна пара почнеться через: ' + str(
+                        time.strftime("%H:%M", time.gmtime((class_time_datetime - now).total_seconds()))) + ' г')
                     bot.send_message(message.chat.id, str(clas))
                     is_show_closest = False
                 if str(clas_time) == str(current_time) and now.strftime("%S") == '01':
@@ -194,10 +196,11 @@ def startWatching(message):
                     bot.send_message(message.chat.id, str(clas),
                                      disable_notification=bool(not clas.should_be_visited))
                     time.sleep(1)
-            if is_show_closest:
+            if is_show_closest and is_watching:
                 bot.send_message(message.chat.id, 'Більше пар сьогодні немає')
                 is_show_closest = False
-            if str(current_time) == '23:06' and todays_date.weekday() != 5 and todays_date.weekday() != 4 and now.strftime("%S") == '01':
+            if str(current_time) == '23:06' and todays_date.weekday() != 5 and todays_date.weekday() != 4 and now.strftime(
+                    "%S") == '01':
                 tomorrow_date = todays_date + timedelta(days=1)
                 week_num = get_week_num(tomorrow_date.day, tomorrow_date.month, tomorrow_date.year)
                 obj = MainResolver(getDecodedSchedule(number_group.selected_group))
@@ -323,17 +326,22 @@ def process_stop_watching_schedule(message):
     try:
         global is_watching
         is_watching = False
+        global is_show_closest
+        is_show_closest = False
     except Exception as e:
         print(e)
         bot.reply_to(message, 'Щось пішло не так :(stop_monitoring')
 
+
 @bot.message_handler(commands=['get_next_class'])
 def process_get_next_class(message):
     try:
+        global is_watching
         global is_show_closest
-        is_show_closest = True
+        is_show_closest = is_watching
     except Exception:
         bot.reply_to(message, 'Щось пішло не так :( process_get_next_class')
+
 
 def process_schedule_step_2(message):
     try:
