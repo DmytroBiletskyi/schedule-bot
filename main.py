@@ -2,6 +2,7 @@ import calendar
 import os
 from datetime import datetime, timedelta, date
 import telebot
+import time
 from telebot import types
 from typing import List
 import json
@@ -13,6 +14,27 @@ bot = telebot.TeleBot(token)
 user_dict = {}
 is_watching = True
 is_show_closest = False
+
+
+def print_user_data(message, funcName):
+    print('\n-------------------------------------------------------------------------HANDLER STARTED')
+    print('function: ' + funcName)
+    print(datetime.fromtimestamp(message.date).strftime('%Y-%m-%d %H:%M:%S'))
+    print('id:', message.from_user.id)
+    print('first_name and username:', message.from_user.first_name, message.from_user.username)
+    print('is_bot:', message.from_user.is_bot)
+    print('-------------------------------------------------------------------------')
+
+
+def print_user_error(message, funcName):
+    print(
+        '\n---------------------------ERROR----------------------------------------------')
+    print('stem_name: ' + funcName)
+    print(datetime.fromtimestamp(message.date).strftime('%Y-%m-%d %H:%M:%S'))
+    print('id:', message.from_user.id)
+    print('first_name and username:', message.from_user.first_name, message.from_user.username)
+    print('is_bot:', message.from_user.is_bot)
+    print('-------------------------------------------------------------------------')
 
 
 def getDecodedSchedule(search_group=1):
@@ -191,6 +213,7 @@ def get_week_num(day: int, month: int, year: int) -> int:
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
+    print_user_data(message, 'start_message')
     empty_markup = types.ReplyKeyboardRemove()
     msg = bot.send_message(message.chat.id,
                            "Привіт ✌️, я бот-помічник. Введіть номер своєї підгрупи (1/2):",
@@ -199,10 +222,11 @@ def start_message(message):
 
 
 def process_group_step(message):
+    print_user_data(message, 'process_group_step')
     try:
         if message.text == '1' or message.text == '2':
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            markup.add("Переглянути розклад")
+            markup.add("Переглянути розклад", "Наступна пара")
             markup.add("Назад👈")
             msg = bot.send_message(message.chat.id,
                                    f'Відстежується <u style="color:000000">{message.text} підгрупа</u>, виберіть наступну дію:',
@@ -217,6 +241,7 @@ def process_group_step(message):
             msg = bot.reply_to(message, 'Невірний номер підгрупи! Введіть ще раз:')
             bot.register_next_step_handler(msg, process_group_step)
     except Exception as e:
+        print_user_error(message, 'process_group_step')
         print(e)
         bot.reply_to(message, 'Щось пішло не так :(')
 
@@ -230,10 +255,31 @@ def menu():
 
 
 def process_schedule_step_1(message):
+    print_user_data(message, 'process_schedule_step_1')
     try:
         if message.text == 'Переглянути розклад':
             msg = bot.send_message(message.chat.id, 'Виберіть один із запропонованих варіантів:', reply_markup=menu())
             bot.register_next_step_handler(msg, process_schedule_step_2)
+        elif message.text == 'Наступна пара':
+            markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            markup.add("Переглянути розклад", "Наступна пара")
+            markup.add("Назад👈")
+            now = datetime.now()
+            todays_date = date.today()
+            week_num = get_week_num(todays_date.day, todays_date.month, todays_date.year)
+            obj = MainResolver(getDecodedSchedule(number_group.selected_group))
+            week = obj.getWeekByNumber(week_num)
+            day_classes = week.getDayClassesByDayName(WeekDayResolver.getDayNameByNumber(todays_date.weekday()))
+            for clas in day_classes:
+                clas_time = str(clas.getTime()[0])
+                class_time_datetime = datetime(todays_date.year, todays_date.month, todays_date.day,
+                                               int(clas_time.split(':')[0]), int(clas_time.split(':')[1]))
+                if class_time_datetime > now:
+                    bot.send_message(message.chat.id, 'Наступна пара почнеться через: ' + str(
+                        time.strftime("%H:%M", time.gmtime((class_time_datetime - now).total_seconds()))) + ' год')
+                    bot.send_message(message.chat.id, str(clas))
+                    bot.register_next_step_handler(message, process_schedule_step_1)
+                    break
         elif message.text == 'Назад👈':
             empty_markup = types.ReplyKeyboardRemove()
             msg = bot.send_message(message.chat.id, 'Введіть номер своєї підгрупи (1/2):', reply_markup=empty_markup)
@@ -242,11 +288,13 @@ def process_schedule_step_1(message):
             msg = bot.send_message(message.chat.id, 'Невірний вибір! Спробуйте ще раз:')
             bot.register_next_step_handler(msg, process_schedule_step_1)
     except Exception as e:
+        print_user_error(message, 'process_schedule_step_1')
         print(e)
         bot.reply_to(message, 'Щось пішло не так :(1')
 
 
 def process_schedule_step_2(message):
+    print_user_data(message, 'process_schedule_step_2')
     try:
         if message.text == 'Сьогодні':
             bot.send_message(message.chat.id, 'Розклад на сьогодні')
@@ -263,13 +311,6 @@ def process_schedule_step_2(message):
             bot.register_next_step_handler(msg, process_schedule_step_2)
 
         elif message.text == 'Завтра':
-            print(
-                'startWatching started !!!!!!!\n-------------------------------------------------------------------------')
-            print(datetime.fromtimestamp(message.date).strftime('%Y-%m-%d %H:%M:%S'))
-            print('id:', message.from_user.id)
-            print('first_name and username:', message.from_user.first_name, message.from_user.username)
-            print('is_bot:', message.from_user.is_bot)
-            print('-------------------------------------------------------------------------')
             bot.send_message(message.chat.id, 'Розклад на завтра')
             todays_date = date.today()
             tomorrow_date = todays_date + timedelta(days=1)
@@ -304,7 +345,7 @@ def process_schedule_step_2(message):
 
         elif message.text == "Назад👈":
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            markup.add("Переглянути розклад")
+            markup.add("Переглянути розклад", "Наступна пара")
             markup.add("Назад👈")
             msg = bot.send_message(message.chat.id, 'Виберіть наступну дію:',
                                    reply_markup=markup)
@@ -323,12 +364,14 @@ def process_schedule_step_2(message):
                                        reply_markup=menu())
                 bot.register_next_step_handler(msg, process_schedule_step_2)
     except Exception as e:
+        print_user_error(message, 'process_schedule_step_2')
         print(e)
         msg = bot.reply_to(message, 'Вихідний!!! Що будемо робити далі?')
         bot.register_next_step_handler(msg, process_schedule_step_2)
 
 
 def process_schedule_step_3(message):
+    print_user_data(message, 'process_schedule_step_3')
     try:
         if message.text == "Назад👈":
             msg = bot.send_message(message.chat.id, 'Виберіть один із запропонованих варіантів:', reply_markup=menu())
@@ -346,11 +389,13 @@ def process_schedule_step_3(message):
             msg = bot.send_message(message.chat.id, 'Невірний вибір! Оберіть тиждень:')
             bot.register_next_step_handler(msg, process_schedule_step_3)
     except Exception as e:
+        print_user_error(message, 'process_schedule_step_3')
         print(e)
         bot.reply_to(message, 'Щось пішло не так :(3')
 
 
 def process_schedule_step_4(message):
+    print_user_data(message, 'process_schedule_step_4')
     try:
         if message.text == "Головне меню👈":
             msg = bot.send_message(message.chat.id, 'Виберіть один із запропонованих варіантів:', reply_markup=menu())
@@ -376,6 +421,7 @@ def process_schedule_step_4(message):
             msg = bot.send_message(message.chat.id, 'Невірний вибір! Оберіть день:')
             bot.register_next_step_handler(msg, process_schedule_step_4)
     except Exception as e:
+        print_user_error(message, 'process_schedule_step_4')
         print(e)
         bot.reply_to(message, 'Щось пішло не так :(4')
 
