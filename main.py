@@ -13,6 +13,7 @@ token = os.getenv('TOKEN_BOT')
 bot = telebot.TeleBot(token)
 user_dict = {}
 is_watching = True
+is_show_closest = False
 
 
 def getDecodedSchedule(search_group=1):
@@ -162,29 +163,39 @@ class WeekDayResolver:
 
 
 def startWatching(message):
-
     try:
-        print('startWatching started !!!!!!!')
         while is_watching:
+            time.sleep(1)
             now = datetime.now()
             current_time = now.strftime("%H:%M")
             todays_date = date.today()
             week_num = get_week_num(todays_date.day, todays_date.month, todays_date.year)
             obj = MainResolver(getDecodedSchedule(number_group.selected_group))
             week = obj.getWeekByNumber(week_num)
-            day_classes = week.getDayClassesByDayName(WeekDayResolver.getDayNameByNumber(todays_date.day % 7))
+            day_classes = week.getDayClassesByDayName(WeekDayResolver.getDayNameByNumber(todays_date.weekday()))
+            global is_show_closest
             for clas in day_classes:
                 clas_time = str(clas.getTime()[0])
+                class_time_datetime = datetime(todays_date.year, todays_date.month, todays_date.day,
+                                               int(clas_time.split(':')[0]), int(clas_time.split(':')[1]))
+                if is_show_closest and class_time_datetime > now:
+                    bot.send_message(message.chat.id, 'наступна пара почнеться через: ' + str(time.strftime("%H:%M", time.gmtime((class_time_datetime - now).total_seconds()))) + ' г')
+                    bot.send_message(message.chat.id, str(clas))
+                    is_show_closest = False
                 if str(clas_time) == str(current_time) and now.strftime("%S") == '01':
+                    time.sleep(1)
                     bot.send_message(message.chat.id, str(clas),
                                      disable_notification=bool(not clas.should_be_visited))
                     time.sleep(1)
-            if str(current_time) == '11:00' and todays_date.day % 7 != 5 and todays_date.day % 7 != 4 and now.strftime("%S") == '01':
+            if is_show_closest:
+                bot.send_message(message.chat.id, 'Більше пар сьогодні немає')
+                is_show_closest = False
+            if str(current_time) == '23:06' and todays_date.weekday() != 5 and todays_date.weekday() != 4 and now.strftime("%S") == '01':
                 tomorrow_date = todays_date + timedelta(days=1)
                 week_num = get_week_num(tomorrow_date.day, tomorrow_date.month, tomorrow_date.year)
                 obj = MainResolver(getDecodedSchedule(number_group.selected_group))
                 week = obj.getWeekByNumber(week_num)
-                day_classes = week.getDayClassesByDayName(WeekDayResolver.getDayNameByNumber(tomorrow_date.day % 7))
+                day_classes = week.getDayClassesByDayName(WeekDayResolver.getDayNameByNumber(tomorrow_date.weekday()))
                 reply = 'Пари на завтра:\n'
                 for clas in day_classes:
                     reply += str(clas) + '\n'
@@ -196,6 +207,7 @@ def startWatching(message):
     except Exception as e:
         print(e)
         msg = bot.send_message(message.chat.id, "🎆Упс...Моніторинг сьогодні не працює :(🎆\nВиберіть іншу дію:")
+        print(e)
         bot.register_next_step_handler(msg, process_schedule_step_1)
 
 
@@ -274,7 +286,7 @@ def process_schedule_step_1(message):
             bot.register_next_step_handler(msg, process_schedule_step_2)
         elif message.text == 'Запустити Моніторинг':
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            markup.add('/stop_monitoring')
+            markup.add('/stop_monitoring', '/get_next_class')
             bot.send_message(message.chat.id, 'Моніторю розклад. Тепер бот буде надсилати сповіщення про пари😉',
                              reply_markup=markup)
             global is_watching
@@ -290,6 +302,7 @@ def process_schedule_step_1(message):
     except Exception as e:
         print(e)
         bot.reply_to(message, 'Щось пішло не так :(1')
+
 
 @bot.message_handler(commands=['stop_monitoring'])
 def process_stop_watching_schedule(message):
@@ -307,6 +320,13 @@ def process_stop_watching_schedule(message):
         print(e)
         bot.reply_to(message, 'Щось пішло не так :(stop_monitoring')
 
+@bot.message_handler(commands=['get_next_class'])
+def process_get_next_class(message):
+    try:
+        global is_show_closest
+        is_show_closest = True
+    except Exception:
+        bot.reply_to(message, 'Щось пішло не так :( process_get_next_class')
 
 def process_schedule_step_2(message):
     try:
@@ -317,7 +337,7 @@ def process_schedule_step_2(message):
             user_data = user_dict[message.chat.id]  # група
             obj = MainResolver(getDecodedSchedule(user_data.selected_group))
             week = obj.getWeekByNumber(week_num)
-            day_classes = week.getDayClassesByDayName(WeekDayResolver.getDayNameByNumber(todays_date.day % 7))
+            day_classes = week.getDayClassesByDayName(WeekDayResolver.getDayNameByNumber(todays_date.weekday()))
             reply = ''
             for clas in day_classes:
                 reply += str(clas) + '\n'
@@ -332,7 +352,7 @@ def process_schedule_step_2(message):
             user_data = user_dict[message.chat.id]  # група
             obj = MainResolver(getDecodedSchedule(user_data.selected_group))
             week = obj.getWeekByNumber(week_num)
-            day_classes = week.getDayClassesByDayName(WeekDayResolver.getDayNameByNumber(tomorrow_date.day % 7))
+            day_classes = week.getDayClassesByDayName(WeekDayResolver.getDayNameByNumber(tomorrow_date.weekday()))
             if not day_classes:
                 msg = bot.send_message(message.chat.id, 'Пар немає. Виберіть один із запропонованих варіантів:')
                 bot.register_next_step_handler(msg, process_schedule_step_2)
