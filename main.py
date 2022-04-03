@@ -1,11 +1,8 @@
 import calendar
 import os
-import time
 from datetime import datetime, timedelta, date
 import telebot
 from telebot import types
-# from classes.MainResolver import MainResolver, WeekDayResolver
-# from examples_tests.decode_json import getDecodedSchedule
 from typing import List
 import json
 
@@ -20,7 +17,7 @@ is_show_closest = False
 
 def getDecodedSchedule(search_group=1):
     schedule_arr = {}
-    json_string = '{ "groups": [ { "group_number": 1, "weeks": [ { "week_number": 1, "week_days": [ { "day_name": "Понеділок", "classes": [ { "number": 3, "name": "(Лабораторна) Управління інформаційною безпекою: Коломієць М.В.", "shouldBeVisited": false, "meetLink": "https://meet.google.com/uat-bmtm-msk" }, { "number": 4, "name": "(Лабораторна) Захищені компютерні сист та  мережі: Кривокульська О.О.", "shouldBeVisited": false, "meetLink": "-" }, { "number": 5, "name": "(Практична) Організаційне забезпечення захисту ін.: Телющенко В.А.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/xfq-pzav-vse" }, { "number": 6, "name": "(Лабораторна) Операційні сист та технолог їх захисту: Карабань М.В.", "shouldBeVisited": false, "meetLink": "-" } ] }, { "day_name": "Вівторок", "classes": [ { "number": 3, "name": "(Лекція) Прикладна криптологія: Ільєнко А.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/nsh-htkt-zdj" }, { "number": 4, "name": "(Лекція) Захищені компютерні сист та  мережі: Єлізаров А.Б.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/xud-mqci-ovg" } ] }, { "day_name": "Середа", "classes": [] }, { "day_name": "Четвер", "classes": [ { "number": 4, "name": "(Лекція) Організаційне забезпечення захисту ін.: Петренко А.Б.", "shouldBeVisited": false, "meetLink": "-" }, { "number": 5, "name": "(Лекція) Ліцензування та сертифік у сф зах інф: Хорошко В.О.", "shouldBeVisited": false, "meetLink": "-" } ] }, { "day_name": "Пятниця", "classes": [ { "number": 3, "name": "(Лекція) Управління інформаційною безпекою: Казмірчук С.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/jjy-vxyo-nsa" }, { "number": 4, "name": "(Лекція) Операційні сист та технолог їх захисту: Гулак Н.К.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/deb-rcae-bwm" } ] } ] }, { "week_number": 2, "week_days": [ { "day_name": "Понеділок", "classes": [ { "number": 3, "name": "(Лабораторна) Прикладна криптологія: Прокопенко О.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/rtd-unck-zbj" }, { "number": 4, "name": "(Лабораторна) Прикладна криптологія: Прокопенко О.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/rtd-unck-zbj" }, { "number": 5, "name": "(Лабораторна) Ліцензування та сертифік у сф зах інф: Хохлачева Ю.Є.", "shouldBeVisited": false, "meetLink": "-" } ] }, { "day_name": "Вівторок", "classes": [ { "number": 3, "name": "(Лекція) Прикладна криптологія: Ільєнко А.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/nsh-htkt-zdj" }, { "number": 4, "name": "(Лекція) Захищені компютерні сист та  мережі: Єлізаров А.Б.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/xud-mqci-ovg" } ] }, { "day_name": "Середа", "classes": [] }, { "day_name": "Четвер", "classes": [ { "number": 2, "name": "(Лабораторна) Авіаційна безп та кібербез авіац інф сис: Іванченко І.С.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/vhr-ucpf-pwq" }, { "number": 3, "name": "(Лабораторна) Авіаційна безп та кібербез авіац інф сис: Іванченко І.С.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/vhr-ucpf-pwq" }, { "number": 4, "name": "(Лекція) Організаційне забезпечення захисту ін.: Петренко А.Б.", "shouldBeVisited": false, "meetLink": "-" }, { "number": 5, "name": "(Лекція) Авіаційна безп та кібербез авіац інф сис: Іванченко Є.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/vhr-ucpf-pwq" } ] }, { "day_name": "Пятниця", "classes": [ { "number": 3, "name": "(Лекція) Операційні сист та технолог їх захисту: Гулак Н.К.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/deb-rcae-bwm" }, { "number": 4, "name": "(Лекція) Управління інформаційною безпекою: Казмірчук С.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/jjy-vxyo-nsa" } ] } ] } ] }, { "group_number": 2, "weeks": [ { "week_number": 1, "week_days": [ { "day_name": "Понеділок1", "classes": [ { "number": 2, "name": "(Лабораторна) Управління інформаційною безпекою: Коломієць М.В.", "shouldBeVisited": false, "meetLink": "https://meet.google.com/uat-bmtm-msk" }, { "number": 3, "name": "(Лабораторна) Захищені компютерні сист та  мережі: Кривокульська О.О.", "shouldBeVisited": false, "meetLink": "-" }, { "number": 4, "name": "(Лабораторна) Операційні сист та технолог їх захисту:  Панівко В.І.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/kmb-kkbn-vpk" }, { "number": 5, "name": "(Практична) Організаційне забезпечення захисту ін.: Телющенко В.А.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/xfq-pzav-vse" } ] }, { "day_name": "Вівторок", "classes": [ { "number": 3, "name": "(Лекція) Прикладна криптологія: Ільєнко А.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/nsh-htkt-zdj" }, { "number": 4, "name": "(Лекція) Захищені компютерні сист та  мережі: Єлізаров А.Б.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/xud-mqci-ovg" }, { "number": 5, "name": "(Лабораторна) Прикладна криптологія: Прокопенко О.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/rtd-unck-zbj" }, { "number": 6, "name": "(Лабораторна) Прикладна криптологія: Прокопенко О.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/rtd-unck-zbj" } ] }, { "day_name": "Середа", "classes": [] }, { "day_name": "Четвер", "classes": [ { "number": 4, "name": "(Лекція) Організаційне забезпечення захисту ін.: Петренко А.Б.", "shouldBeVisited": false, "meetLink": "-" }, { "number": 5, "name": "(Лекція) Ліцензування та сертифік у сф зах інф: Хорошко В.О.", "shouldBeVisited": false, "meetLink": "-" } ] }, { "day_name": "Пятниця", "classes": [ { "number": 3, "name": "(Лекція) Управління інформаційною безпекою: Казмірчук С.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/jjy-vxyo-nsa" }, { "number": 4, "name": "(Лекція) Операційні сист та технолог їх захисту: Гулак Н.К.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/deb-rcae-bwm" } ] } ] }, { "week_number": 2, "week_days": [ { "day_name": "Понеділок2", "classes": [ { "number": 1, "name": "(Лабораторна) Ліцензування та сертифік у сф зах інф: Хохлачева Ю.Є.", "shouldBeVisited": false, "meetLink": "-" }, { "number": 2, "name": "(Лабораторна) Ліцензування та сертифік у сф зах інф: Хохлачева Ю.Є.", "shouldBeVisited": false, "meetLink": "-" }, { "number": 3, "name": "(Лабораторна) Авіаційна безп та кібербез авіац інф сис: Іванченко І.С.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/vhr-ucpf-pwq" }, { "number": 4, "name": "(Лабораторна) Авіаційна безп та кібербез авіац інф сис: Іванченко І.С.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/vhr-ucpf-pwq" } ] }, { "day_name": "Вівторок", "classes": [ { "number": 3, "name": "(Лекція) Прикладна криптологія: Ільєнко А.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/nsh-htkt-zdj" }, { "number": 4, "name": "(Лекція) Захищені компютерні сист та  мережі: Єлізаров А.Б.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/xud-mqci-ovg" } ] }, { "day_name": "Середа", "classes": [] }, { "day_name": "Четвер", "classes": [ { "number": 4, "name": "(Лекція) Організаційне забезпечення захисту ін.: Петренко А.Б.", "shouldBeVisited": false, "meetLink": "-" }, { "number": 5, "name": "(Лекція) Авіаційна безп та кібербез авіац інф сис: Іванченко Є.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/vhr-ucpf-pwq" } ] }, { "day_name": "Пятниця", "classes": [ { "number": 3, "name": "(Лекція) Операційні сист та технолог їх захисту: Гулак Н.К.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/deb-rcae-bwm" }, { "number": 4, "name": "(Лекція) Управління інформаційною безпекою: Казмірчук С.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/jjy-vxyo-nsa" } ] } ] } ] } ] }'
+    json_string = '{ "groups": [ { "group_number": 1, "weeks": [ { "week_number": 1, "week_days": [ { "day_name": "Понеділок", "classes": [ { "number": 3, "name": "(Лабораторна) Управління інформаційною безпекою: Коломієць М.В.", "shouldBeVisited": false, "meetLink": "https://meet.google.com/uat-bmtm-msk" }, { "number": 4, "name": "(Лабораторна) Захищені компютерні сист та  мережі: Кривокульська О.О.", "shouldBeVisited": false, "meetLink": "-" }, { "number": 5, "name": "(Практична) Організаційне забезпечення захисту ін.: Телющенко В.А.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/xfq-pzav-vse" }, { "number": 6, "name": "(Лабораторна) Операційні сист та технолог їх захисту: Карабань М.В.", "shouldBeVisited": false, "meetLink": "-" } ] }, { "day_name": "Вівторок", "classes": [ { "number": 3, "name": "(Лекція) Прикладна криптологія: Ільєнко А.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/nsh-htkt-zdj" }, { "number": 4, "name": "(Лекція) Захищені компютерні сист та  мережі: Єлізаров А.Б.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/xud-mqci-ovg" } ] }, { "day_name": "Середа", "classes": [] }, { "day_name": "Четвер", "classes": [ { "number": 4, "name": "(Лекція) Організаційне забезпечення захисту ін.: Петренко А.Б.", "shouldBeVisited": false, "meetLink": "-" }, { "number": 5, "name": "(Лекція) Ліцензування та сертифік у сф зах інф: Хорошко В.О.", "shouldBeVisited": false, "meetLink": "-" } ] }, { "day_name": "Пятниця", "classes": [ { "number": 3, "name": "(Лекція) Управління інформаційною безпекою: Казмірчук С.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/jjy-vxyo-nsa" }, { "number": 4, "name": "(Лекція) Операційні сист та технолог їх захисту: Гулак Н.К.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/deb-rcae-bwm" } ] } ] }, { "week_number": 2, "week_days": [ { "day_name": "Понеділок", "classes": [ { "number": 3, "name": "(Лабораторна) Прикладна криптологія: Прокопенко О.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/rtd-unck-zbj" }, { "number": 4, "name": "(Лабораторна) Прикладна криптологія: Прокопенко О.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/rtd-unck-zbj" }, { "number": 5, "name": "(Лабораторна) Ліцензування та сертифік у сф зах інф: Хохлачева Ю.Є.", "shouldBeVisited": false, "meetLink": "-" } ] }, { "day_name": "Вівторок", "classes": [ { "number": 3, "name": "(Лекція) Прикладна криптологія: Ільєнко А.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/nsh-htkt-zdj" }, { "number": 4, "name": "(Лекція) Захищені компютерні сист та  мережі: Єлізаров А.Б.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/xud-mqci-ovg" } ] }, { "day_name": "Середа", "classes": [] }, { "day_name": "Четвер", "classes": [ { "number": 2, "name": "(Лабораторна) Авіаційна безп та кібербез авіац інф сис: Іванченко І.С.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/vhr-ucpf-pwq" }, { "number": 3, "name": "(Лабораторна) Авіаційна безп та кібербез авіац інф сис: Іванченко І.С.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/vhr-ucpf-pwq" }, { "number": 4, "name": "(Лекція) Організаційне забезпечення захисту ін.: Петренко А.Б.", "shouldBeVisited": false, "meetLink": "-" }, { "number": 5, "name": "(Лекція) Авіаційна безп та кібербез авіац інф сис: Іванченко Є.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/vhr-ucpf-pwq" } ] }, { "day_name": "Пятниця", "classes": [ { "number": 3, "name": "(Лекція) Операційні сист та технолог їх захисту: Гулак Н.К.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/deb-rcae-bwm" }, { "number": 4, "name": "(Лекція) Управління інформаційною безпекою: Казмірчук С.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/jjy-vxyo-nsa" } ] } ] } ] }, { "group_number": 2, "weeks": [ { "week_number": 1, "week_days": [ { "day_name": "Понеділок", "classes": [ { "number": 2, "name": "(Лабораторна) Управління інформаційною безпекою: Коломієць М.В.", "shouldBeVisited": false, "meetLink": "https://meet.google.com/uat-bmtm-msk" }, { "number": 3, "name": "(Лабораторна) Захищені компютерні сист та  мережі: Кривокульська О.О.", "shouldBeVisited": false, "meetLink": "-" }, { "number": 4, "name": "(Лабораторна) Операційні сист та технолог їх захисту:  Панівко В.І.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/kmb-kkbn-vpk" }, { "number": 5, "name": "(Практична) Організаційне забезпечення захисту ін.: Телющенко В.А.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/xfq-pzav-vse" } ] }, { "day_name": "Вівторок", "classes": [ { "number": 3, "name": "(Лекція) Прикладна криптологія: Ільєнко А.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/nsh-htkt-zdj" }, { "number": 4, "name": "(Лекція) Захищені компютерні сист та  мережі: Єлізаров А.Б.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/xud-mqci-ovg" }, { "number": 5, "name": "(Лабораторна) Прикладна криптологія: Прокопенко О.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/rtd-unck-zbj" }, { "number": 6, "name": "(Лабораторна) Прикладна криптологія: Прокопенко О.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/rtd-unck-zbj" } ] }, { "day_name": "Середа", "classes": [] }, { "day_name": "Четвер", "classes": [ { "number": 4, "name": "(Лекція) Організаційне забезпечення захисту ін.: Петренко А.Б.", "shouldBeVisited": false, "meetLink": "-" }, { "number": 5, "name": "(Лекція) Ліцензування та сертифік у сф зах інф: Хорошко В.О.", "shouldBeVisited": false, "meetLink": "-" } ] }, { "day_name": "Пятниця", "classes": [ { "number": 3, "name": "(Лекція) Управління інформаційною безпекою: Казмірчук С.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/jjy-vxyo-nsa" }, { "number": 4, "name": "(Лекція) Операційні сист та технолог їх захисту: Гулак Н.К.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/deb-rcae-bwm" } ] } ] }, { "week_number": 2, "week_days": [ { "day_name": "Понеділок", "classes": [ { "number": 1, "name": "(Лабораторна) Ліцензування та сертифік у сф зах інф: Хохлачева Ю.Є.", "shouldBeVisited": false, "meetLink": "-" }, { "number": 2, "name": "(Лабораторна) Ліцензування та сертифік у сф зах інф: Хохлачева Ю.Є.", "shouldBeVisited": false, "meetLink": "-" }, { "number": 3, "name": "(Лабораторна) Авіаційна безп та кібербез авіац інф сис: Іванченко І.С.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/vhr-ucpf-pwq" }, { "number": 4, "name": "(Лабораторна) Авіаційна безп та кібербез авіац інф сис: Іванченко І.С.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/vhr-ucpf-pwq" } ] }, { "day_name": "Вівторок", "classes": [ { "number": 3, "name": "(Лекція) Прикладна криптологія: Ільєнко А.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/nsh-htkt-zdj" }, { "number": 4, "name": "(Лекція) Захищені компютерні сист та  мережі: Єлізаров А.Б.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/xud-mqci-ovg" } ] }, { "day_name": "Середа", "classes": [] }, { "day_name": "Четвер", "classes": [ { "number": 4, "name": "(Лекція) Організаційне забезпечення захисту ін.: Петренко А.Б.", "shouldBeVisited": false, "meetLink": "-" }, { "number": 5, "name": "(Лекція) Авіаційна безп та кібербез авіац інф сис: Іванченко Є.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/vhr-ucpf-pwq" } ] }, { "day_name": "Пятниця", "classes": [ { "number": 3, "name": "(Лекція) Операційні сист та технолог їх захисту: Гулак Н.К.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/deb-rcae-bwm" }, { "number": 4, "name": "(Лекція) Управління інформаційною безпекою: Казмірчук С.В.", "shouldBeVisited": true, "meetLink": "https://meet.google.com/jjy-vxyo-nsa" } ] } ] } ] } ] }'
     data = json.loads(json_string)
     groups = data['groups']
     for group in groups:
@@ -164,70 +161,6 @@ class WeekDayResolver:
         return week_days[week_number]
 
 
-def startWatching(message):
-    try:
-        print(
-            'startWatching started !!!!!!!\n-------------------------------------------------------------------------')
-        print(datetime.fromtimestamp(message.date).strftime('%Y-%m-%d %H:%M:%S'))
-        print('id:', message.from_user.id)
-        print('first_name and username:', message.from_user.first_name, message.from_user.username)
-        print('is_bot:', message.from_user.is_bot)
-        print('-------------------------------------------------------------------------')
-        while is_watching:
-            now = datetime.now()
-            current_time = now.strftime("%H:%M")
-            todays_date = date.today()
-            week_num = get_week_num(todays_date.day, todays_date.month, todays_date.year)
-            obj = MainResolver(getDecodedSchedule(number_group.selected_group))
-            week = obj.getWeekByNumber(week_num)
-            day_classes = week.getDayClassesByDayName(WeekDayResolver.getDayNameByNumber(todays_date.weekday()))
-            global is_show_closest
-            for clas in day_classes:
-                clas_time = str(clas.getTime()[0])
-                class_time_datetime = datetime(todays_date.year, todays_date.month, todays_date.day,
-                                               int(clas_time.split(':')[0]), int(clas_time.split(':')[1]))
-                if is_show_closest and class_time_datetime > now:
-                    bot.send_message(message.chat.id, 'наступна пара почнеться через: ' + str(
-                        time.strftime("%H:%M", time.gmtime((class_time_datetime - now).total_seconds()))) + ' г')
-                    bot.send_message(message.chat.id, str(clas))
-                    is_show_closest = False
-                if str(clas_time) == str(current_time) and now.strftime("%S") == '01':
-                    time.sleep(1)
-                    bot.send_message(message.chat.id, str(clas),
-                                     disable_notification=bool(not clas.should_be_visited))
-                    time.sleep(1)
-            if is_show_closest and is_watching:
-                bot.send_message(message.chat.id, 'Більше пар сьогодні немає')
-                is_show_closest = False
-            if str(current_time) == '23:06' and todays_date.weekday() != 5 and todays_date.weekday() != 4 and now.strftime(
-                    "%S") == '01':
-                tomorrow_date = todays_date + timedelta(days=1)
-                week_num = get_week_num(tomorrow_date.day, tomorrow_date.month, tomorrow_date.year)
-                obj = MainResolver(getDecodedSchedule(number_group.selected_group))
-                week = obj.getWeekByNumber(week_num)
-                day_classes = week.getDayClassesByDayName(WeekDayResolver.getDayNameByNumber(tomorrow_date.weekday()))
-                reply = 'Пари на завтра:\n'
-                for clas in day_classes:
-                    reply += str(clas) + '\n'
-                if reply == 'Пари на завтра:\n':
-                    reply = 'завтра нема пар'
-                bot.send_message(message.chat.id, reply, disable_web_page_preview=True)
-                time.sleep(1)
-            time.sleep(1)
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        markup.add("Переглянути розклад", "Запустити Моніторинг")
-        markup.add("Назад👈")
-        msg = bot.send_message(message.chat.id,
-                               'Закінчив моніторити, виберіть наступну дію:',
-                               reply_markup=markup)
-        bot.register_next_step_handler(msg, process_schedule_step_1)
-    except Exception as e:
-        print(e)
-        msg = bot.send_message(message.chat.id, "🎆Упс...Моніторинг сьогодні не працює :(🎆\nВиберіть іншу дію:")
-        print(e)
-        bot.register_next_step_handler(msg, process_schedule_step_1)
-
-
 class UserData:
     selected_group: int
     selected_week: int
@@ -269,7 +202,7 @@ def process_group_step(message):
     try:
         if message.text == '1' or message.text == '2':
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            markup.add("Переглянути розклад", "Запустити Моніторинг")
+            markup.add("Переглянути розклад")
             markup.add("Назад👈")
             msg = bot.send_message(message.chat.id,
                                    f'Відстежується <u style="color:000000">{message.text} підгрупа</u>, виберіть наступну дію:',
@@ -301,14 +234,6 @@ def process_schedule_step_1(message):
         if message.text == 'Переглянути розклад':
             msg = bot.send_message(message.chat.id, 'Виберіть один із запропонованих варіантів:', reply_markup=menu())
             bot.register_next_step_handler(msg, process_schedule_step_2)
-        elif message.text == 'Запустити Моніторинг':
-            markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            markup.add('/stop_monitoring', '/get_next_class')
-            bot.send_message(message.chat.id, 'Моніторю розклад. Тепер бот буде надсилати сповіщення про пари😉',
-                             reply_markup=markup)
-            global is_watching
-            is_watching = True
-            startWatching(message)
         elif message.text == 'Назад👈':
             empty_markup = types.ReplyKeyboardRemove()
             msg = bot.send_message(message.chat.id, 'Введіть номер своєї підгрупи (1/2):', reply_markup=empty_markup)
@@ -319,28 +244,6 @@ def process_schedule_step_1(message):
     except Exception as e:
         print(e)
         bot.reply_to(message, 'Щось пішло не так :(1')
-
-
-@bot.message_handler(commands=['stop_monitoring'])
-def process_stop_watching_schedule(message):
-    try:
-        global is_watching
-        is_watching = False
-        global is_show_closest
-        is_show_closest = False
-    except Exception as e:
-        print(e)
-        bot.reply_to(message, 'Щось пішло не так :(stop_monitoring')
-
-
-@bot.message_handler(commands=['get_next_class'])
-def process_get_next_class(message):
-    try:
-        global is_watching
-        global is_show_closest
-        is_show_closest = is_watching
-    except Exception:
-        bot.reply_to(message, 'Щось пішло не так :( process_get_next_class')
 
 
 def process_schedule_step_2(message):
@@ -360,6 +263,13 @@ def process_schedule_step_2(message):
             bot.register_next_step_handler(msg, process_schedule_step_2)
 
         elif message.text == 'Завтра':
+            print(
+                'startWatching started !!!!!!!\n-------------------------------------------------------------------------')
+            print(datetime.fromtimestamp(message.date).strftime('%Y-%m-%d %H:%M:%S'))
+            print('id:', message.from_user.id)
+            print('first_name and username:', message.from_user.first_name, message.from_user.username)
+            print('is_bot:', message.from_user.is_bot)
+            print('-------------------------------------------------------------------------')
             bot.send_message(message.chat.id, 'Розклад на завтра')
             todays_date = date.today()
             tomorrow_date = todays_date + timedelta(days=1)
@@ -394,7 +304,7 @@ def process_schedule_step_2(message):
 
         elif message.text == "Назад👈":
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            markup.add("Переглянути розклад", "Запустити Моніторинг")
+            markup.add("Переглянути розклад")
             markup.add("Назад👈")
             msg = bot.send_message(message.chat.id, 'Виберіть наступну дію:',
                                    reply_markup=markup)
