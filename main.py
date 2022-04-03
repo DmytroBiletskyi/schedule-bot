@@ -173,7 +173,6 @@ def startWatching(message):
         print('is_bot:', message.from_user.is_bot)
         print('-------------------------------------------------------------------------')
         while is_watching:
-            time.sleep(1)
             now = datetime.now()
             current_time = now.strftime("%H:%M")
             todays_date = date.today()
@@ -212,7 +211,13 @@ def startWatching(message):
                 bot.send_message(message.chat.id, reply, disable_web_page_preview=True)
                 time.sleep(1)
             time.sleep(1)
-        print('startWatching finished')
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        markup.add("Переглянути розклад", "Запустити Моніторинг")
+        markup.add("Назад👈")
+        msg = bot.send_message(message.chat.id,
+                               'Закінчив моніторити, виберіть наступну дію:',
+                               reply_markup=markup)
+        bot.register_next_step_handler(msg, process_schedule_step_1)
     except Exception as e:
         print(e)
         msg = bot.send_message(message.chat.id, "🎆Упс...Моніторинг сьогодні не працює :(🎆\nВиберіть іншу дію:")
@@ -318,13 +323,6 @@ def process_stop_watching_schedule(message):
     try:
         global is_watching
         is_watching = False
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        markup.add("Переглянути розклад", "Запустити Моніторинг")
-        markup.add("Назад👈")
-        msg = bot.send_message(message.chat.id,
-                               'Закінчив моніторити, виберіть наступну дію:',
-                               reply_markup=markup)
-        bot.register_next_step_handler(msg, process_schedule_step_1)
     except Exception as e:
         print(e)
         bot.reply_to(message, 'Щось пішло не так :(stop_monitoring')
