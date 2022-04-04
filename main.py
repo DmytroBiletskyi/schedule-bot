@@ -270,6 +270,7 @@ def process_schedule_step_1(message):
             obj = MainResolver(getDecodedSchedule(number_group.selected_group))
             week = obj.getWeekByNumber(week_num)
             day_classes = week.getDayClassesByDayName(WeekDayResolver.getDayNameByNumber(todays_date.weekday()))
+            is_classes_empty = True
             for clas in day_classes:
                 clas_time = str(clas.getTime()[0])
                 class_time_datetime = datetime(todays_date.year, todays_date.month, todays_date.day,
@@ -278,8 +279,11 @@ def process_schedule_step_1(message):
                     bot.send_message(message.chat.id, 'Наступна пара почнеться через: ' + str(
                         time.strftime("%H:%M", time.gmtime((class_time_datetime - now).total_seconds()))) + ' год')
                     bot.send_message(message.chat.id, str(clas))
-                    bot.register_next_step_handler(message, process_schedule_step_1)
+                    is_classes_empty = False
                     break
+            if is_classes_empty:
+                bot.send_message(message.chat.id, 'Більше пар немає')
+            bot.register_next_step_handler(message, process_schedule_step_1)
         elif message.text == 'Назад👈':
             empty_markup = types.ReplyKeyboardRemove()
             msg = bot.send_message(message.chat.id, 'Введіть номер своєї підгрупи (1/2):', reply_markup=empty_markup)
