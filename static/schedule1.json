@@ -1,0 +1,679 @@
+{
+  "potok_name": "ФККПІ 442",
+  "groups": [
+    {
+      "group_number": 1,
+      "weeks": [
+        {
+          "week_number": 1,
+          "week_days": [
+            {
+              "day_name": "Понеділок",
+              "classes": [
+                {
+                  "number": 3,
+                  "name": "Безпека інформаційно-комунікаційних систем та мере",
+                  "type": "лаб",
+                  "location": "11. 302",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Висоцька О.О.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/NTM4ODI0NDIzMTc1'>class(лаби+лек)</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/qdv-trgo-qnn'>meet(лаби+лек)</a>"
+                },
+                {
+                  "number": 4,
+                  "name": "Основи побудови комунікаційних систем на базі обладнанння CISCO",
+                  "type": "лек",
+                  "location": "1. 001",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Єлізаров А.Б.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/MTUyMDI5MDA0OTUz'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/asr-qewi-wwm'>meet</a>"
+                },
+                {
+                  "number": 5,
+                  "name": "Безпека інформаційно-комунікаційних систем та мере",
+                  "type": "лек",
+                  "location": "4. 204",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Висоцька О.О.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/NTM4ODI0NDIzMTc1'>class(лаби+лек)</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/qdv-trgo-qnn'>meet(лаби+лек)</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Вівторок",
+              "classes": [
+                {
+                  "number": 2,
+                  "name": "Основи охорони праці",
+                  "type": "лаб",
+                  "location": "7. 410",
+                  "teacher_position": "асистент",
+                  "teacher_name": "Якимець І.В.",
+                  "shouldBeVisited": true,
+                  "class_link": "",
+                  "meetLink": ""
+                },
+                {
+                  "number": 3,
+                  "name": "Основи побудови комунікаційних систем на базі обладнанння CISCO",
+                  "type": "лаб",
+                  "location": "11. 115",
+                  "teacher_position": "асистент",
+                  "teacher_name": "Галата Л.П.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTQ1ODU5NzYyMzM1'>class</a>",
+                  "meetLink": ""
+                },
+                {
+                  "number": 4,
+                  "name": "Авіаційна безпека та кібербезпека авіаційних інфор",
+                  "type": "лаб",
+                  "location": "11. 419",
+                  "teacher_position": "старший викл",
+                  "teacher_name": "Лозова І.Л.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTM5MTEzMjQ0OTEx'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/mmm-nadt-dub'>meet</a>"
+                },
+                {
+                  "number": 5,
+                  "name": "Авіаційна безпека та кібербезпека авіаційних інфор",
+                  "type": "лаб",
+                  "location": "11. 419",
+                  "teacher_position": "старший викл",
+                  "teacher_name": "Лозова І.Л.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTM5MTEzMjQ0OTEx'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/mmm-nadt-dub'>meet</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Середа",
+              "classes": [
+                {
+                  "number": 6,
+                  "name": "Системи технічного захисту інформації",
+                  "type": "лек",
+                  "location": "11. 111",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Німченко Т.В.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTI2NTY2NzIwNzY5'>class(тут лаби+лек)</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/syy-nyts-yya'>meet</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Четвер",
+              "classes": [
+                {
+                  "number": 4,
+                  "name": "Прикладна криптологія",
+                  "type": "лек",
+                  "location": "1. 002",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Ільєнко А.В.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NDQ0OTY5NzIzNzI0'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/nsh-htkt-zdj'>meet</a>"
+                },
+                {
+                  "number": 5,
+                  "name": "Операційні системи та технології їх захисту ",
+                  "type": "лек",
+                  "location": "1. 002",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Гулак Н.К.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/NTM5MDg5ODg1NTE4'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/nmy-tzkd-nqf'>meet</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Пятниця",
+              "classes": [
+                {
+                  "number": 4,
+                  "name": "Основи охорони праці",
+                  "type": "лек",
+                  "location": "3. 218",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Федина В.П.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTQ1MzI3ODIyNzk1'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/gui-yuww-uyn'>meet</a>"
+                },
+                {
+                  "number": 5,
+                  "name": "Захищені мережеві протоколи",
+                  "type": "лек",
+                  "location": "11. 111",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Сидоренко В.М.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTI2NjAyOTU5MjY2'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/jct-yzor-xwn'>meet</a>"
+                },
+                {
+                  "number": 6,
+                  "name": "Захищені мережеві протоколи",
+                  "type": "лаб",
+                  "location": "11. 004",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Сидоренко В.М.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTM5Mzc2MjA0NjMx'>class</a>",
+                  "meetLink": "\n    meet пока нема"
+                }
+              ]
+            },
+            {
+              "day_name": "Субота",
+              "classes": []
+            }
+          ]
+        },
+        {
+          "week_number": 2,
+          "week_days": [
+            {
+              "day_name": "Понеділок",
+              "classes": [
+                {
+                  "number": 4,
+                  "name": "Основи побудови комунікаційних систем на базі обладнанння CISCO",
+                  "type": "лек",
+                  "location": "1. 001",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Єлізаров А.Б.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/MTUyMDI5MDA0OTUz'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/asr-qewi-wwm'>meet</a>"
+                },
+                {
+                  "number": 5,
+                  "name": "Безпека інформаційно-комунікаційних систем та мере",
+                  "type": "лек",
+                  "location": "4. 204",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Висоцька О.О.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/NTM4ODI0NDIzMTc1'>class(лаби+лек)</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/qdv-trgo-qnn'>meet(лаби+лек)</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Вівторок",
+              "classes": [
+                {
+                  "number": 2,
+                  "name": "Операційні системи та технології їх захисту ",
+                  "type": "лаб",
+                  "location": "11. 302",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Гулак Н.К.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/NTM5MDg5ODg1NTE4'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/nmy-tzkd-nqf'>meet</a>"
+                },
+                {
+                  "number": 3,
+                  "name": "Прикладна криптологія",
+                  "type": "лаб",
+                  "location": "11. 417",
+                  "teacher_position": "асистент",
+                  "teacher_name": "Прокопенко О.В.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/NTM4ODEyMDk3NzA1'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/kbu-vbph-roc'>meet</a>"
+                },
+                {
+                  "number": 4,
+                  "name": "Системи технічного захисту інформації",
+                  "type": "лаб",
+                  "location": "11. 107",
+                  "teacher_position": "асистент",
+                  "teacher_name": "Моржова Л.І.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTM5Mjg1MDExNzc1'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/zqf-crii-fhr'>meet</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Середа",
+              "classes": [
+                {
+                  "number": 5,
+                  "name": "Авіаційна безпека та кібербезпека авіаційних інфор",
+                  "type": "лек",
+                  "location": "11. 111",
+                  "teacher_position": "зав. кафедри",
+                  "teacher_name": "Корченко О.Г.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTM5MDk3NTA4NDM1'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/wxk-sarc-fdj'>meet</a>"
+                },
+                {
+                  "number": 6,
+                  "name": "Системи технічного захисту інформації",
+                  "type": "лек",
+                  "location": "11. 111",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Німченко Т.В.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTI2NTY2NzIwNzY5'>class(тут лаби+лек)</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/syy-nyts-yya'>meet</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Четвер",
+              "classes": [
+                {
+                  "number": 4,
+                  "name": "Прикладна криптологія",
+                  "type": "лек",
+                  "location": "1. 002",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Ільєнко А.В.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NDQ0OTY5NzIzNzI0'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/nsh-htkt-zdj'>meet</a>"
+                },
+                {
+                  "number": 5,
+                  "name": "Операційні системи та технології їх захисту ",
+                  "type": "лек",
+                  "location": "1. 002",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Гулак Н.К.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/NTM5MDg5ODg1NTE4'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/nmy-tzkd-nqf'>meet</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Пятниця",
+              "classes": [
+                {
+                  "number": 4,
+                  "name": "Захищені мережеві протоколи",
+                  "type": "лек",
+                  "location": "11. 111",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Сидоренко В.М.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTI2NjAyOTU5MjY2'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/jct-yzor-xwn'>meet</a>"
+                },
+                {
+                  "number": 5,
+                  "name": "Основи охорони праці",
+                  "type": "лек",
+                  "location": "3. 218",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Федина В.П.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTQ1MzI3ODIyNzk1'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/gui-yuww-uyn'>meet</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Субота",
+              "classes": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "group_number": 2,
+      "weeks": [
+        {
+          "week_number": 1,
+          "week_days": [
+            {
+              "day_name": "Понеділок",
+              "classes": [
+                {
+                  "number": 4,
+                  "name": "Основи побудови комунікаційних систем на базі обладнанння CISCO",
+                  "type": "лек",
+                  "location": "1. 001",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Єлізаров А.Б.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/MTUyMDI5MDA0OTUz'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/asr-qewi-wwm'>meet</a>"
+                },
+                {
+                  "number": 5,
+                  "name": "Безпека інформаційно-комунікаційних систем та мере",
+                  "type": "лек",
+                  "location": "4. 204",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Висоцька О.О.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/NTM4ODI0NDIzMTc1'>class(лаби+лек)</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/qdv-trgo-qnn'>meet(лаби+лек)</a>"
+                },
+                {
+                  "number": 6,
+                  "name": "Безпека інформаційно-комунікаційних систем та мере",
+                  "type": "лаб",
+                  "location": "11. 302",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Висоцька О.О.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/NTM4ODI0NDIzMTc1'>class(лаби+лек)</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/qdv-trgo-qnn'>meet(лаби+лек)</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Вівторок",
+              "classes": [
+                {
+                  "number": 3,
+                  "name": "Системи технічного захисту інформації",
+                  "type": "лаб",
+                  "location": "11. 107",
+                  "teacher_position": "асистент",
+                  "teacher_name": "Моржова Л.І.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTM5Mjg1MDExNzc1'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/zqf-crii-fhr'>meet</a>"
+                },
+                {
+                  "number": 4,
+                  "name": "Основи побудови комунікаційних систем на базі обладнанння CISCO",
+                  "type": "лаб",
+                  "location": "11. 115",
+                  "teacher_position": "асистент",
+                  "teacher_name": "Галата Л.П.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTQ1ODU5NzYyMzM1'>class</a>",
+                  "meetLink": ""
+                },
+                {
+                  "number": 5,
+                  "name": "Захищені мережеві протоколи",
+                  "type": "лаб",
+                  "location": "11. 004",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Сидоренко В.М.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTM5Mzc2MjA0NjMx'>class</a>",
+                  "meetLink": "\n    meet пока нема"
+                }
+              ]
+            },
+            {
+              "day_name": "Середа",
+              "classes": [
+                {
+                  "number": 6,
+                  "name": "Системи технічного захисту інформації",
+                  "type": "лек",
+                  "location": "11. 111",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Німченко Т.В.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTI2NTY2NzIwNzY5'>class(тут лаби+лек)</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/syy-nyts-yya'>meet</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Четвер",
+              "classes": [
+                {
+                  "number": 4,
+                  "name": "Прикладна криптологія",
+                  "type": "лек",
+                  "location": "1. 002",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Ільєнко А.В.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NDQ0OTY5NzIzNzI0'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/nsh-htkt-zdj'>meet</a>"
+                },
+                {
+                  "number": 5,
+                  "name": "Операційні системи та технології їх захисту ",
+                  "type": "лек",
+                  "location": "1. 002",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Гулак Н.К.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/NTM5MDg5ODg1NTE4'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/nmy-tzkd-nqf'>meet</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Пятниця",
+              "classes": [
+                {
+                  "number": 4,
+                  "name": "Основи охорони праці",
+                  "type": "лек",
+                  "location": "3. 218",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Федина В.П.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTQ1MzI3ODIyNzk1'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/gui-yuww-uyn'>meet</a>"
+                },
+                {
+                  "number": 5,
+                  "name": "Захищені мережеві протоколи",
+                  "type": "лек",
+                  "location": "11. 111",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Сидоренко В.М.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTI2NjAyOTU5MjY2'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/jct-yzor-xwn'>meet</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Субота",
+              "classes": []
+            }
+          ]
+        },
+        {
+          "week_number": 2,
+          "week_days": [
+            {
+              "day_name": "Понеділок",
+              "classes": [
+                {
+                  "number": 4,
+                  "name": "Основи побудови комунікаційних систем на базі обладнанння CISCO",
+                  "type": "лек",
+                  "location": "1. 001",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Єлізаров А.Б.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/MTUyMDI5MDA0OTUz'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/asr-qewi-wwm'>meet</a>"
+                },
+                {
+                  "number": 5,
+                  "name": "Безпека інформаційно-комунікаційних систем та мере",
+                  "type": "лек",
+                  "location": "4. 204",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Висоцька О.О.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/NTM4ODI0NDIzMTc1'>class(лаби+лек)</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/qdv-trgo-qnn'>meet(лаби+лек)</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Вівторок",
+              "classes": [
+                {
+                  "number": 2,
+                  "name": "Прикладна криптологія",
+                  "type": "лаб",
+                  "location": "11. 417",
+                  "teacher_position": "асистент",
+                  "teacher_name": "Прокопенко О.В.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/NTM4ODEyMDk3NzA1'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/kbu-vbph-roc'>meet</a>"
+                },
+                {
+                  "number": 3,
+                  "name": "Операційні системи та технології їх захисту ",
+                  "type": "лаб",
+                  "location": "11. 302",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Гулак Н.К.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/NTM5MDg5ODg1NTE4'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/nmy-tzkd-nqf'>meet</a>"
+                },
+                {
+                  "number": 4,
+                  "name": "Авіаційна безпека та кібербезпека авіаційних інфор",
+                  "type": "лаб",
+                  "location": "11. 419",
+                  "teacher_position": "старший викл",
+                  "teacher_name": "Лозова І.Л.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTM5MTEzMjQ0OTEx'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/mmm-nadt-dub'>meet</a>"
+                },
+                {
+                  "number": 5,
+                  "name": "Авіаційна безпека та кібербезпека авіаційних інфор",
+                  "type": "лаб",
+                  "location": "11. 419",
+                  "teacher_position": "старший викл",
+                  "teacher_name": "Лозова І.Л.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTM5MTEzMjQ0OTEx'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/mmm-nadt-dub'>meet</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Середа",
+              "classes": [
+                {
+                  "number": 5,
+                  "name": "Авіаційна безпека та кібербезпека авіаційних інфор",
+                  "type": "лек",
+                  "location": "11. 111",
+                  "teacher_position": "зав. кафедри",
+                  "teacher_name": "Корченко О.Г.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTM5MDk3NTA4NDM1'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/wxk-sarc-fdj'>meet</a>"
+                },
+                {
+                  "number": 6,
+                  "name": "Системи технічного захисту інформації",
+                  "type": "лек",
+                  "location": "11. 111",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Німченко Т.В.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTI2NTY2NzIwNzY5'>class(тут лаби+лек)</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/syy-nyts-yya'>meet</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Четвер",
+              "classes": [
+                {
+                  "number": 4,
+                  "name": "Прикладна криптологія",
+                  "type": "лек",
+                  "location": "1. 002",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Ільєнко А.В.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NDQ0OTY5NzIzNzI0'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/nsh-htkt-zdj'>meet</a>"
+                },
+                {
+                  "number": 5,
+                  "name": "Операційні системи та технології їх захисту ",
+                  "type": "лек",
+                  "location": "1. 002",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Гулак Н.К.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/3/c/NTM5MDg5ODg1NTE4'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/nmy-tzkd-nqf'>meet</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Пятниця",
+              "classes": [
+                {
+                  "number": 3,
+                  "name": "Основи охорони праці",
+                  "type": "лаб",
+                  "location": "7. 410",
+                  "teacher_position": "асистент",
+                  "teacher_name": "Якимець І.В.",
+                  "shouldBeVisited": true,
+                  "class_link": "",
+                  "meetLink": ""
+                },
+                {
+                  "number": 4,
+                  "name": "Захищені мережеві протоколи",
+                  "type": "лек",
+                  "location": "11. 111",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Сидоренко В.М.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTI2NjAyOTU5MjY2'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/jct-yzor-xwn'>meet</a>"
+                },
+                {
+                  "number": 5,
+                  "name": "Основи охорони праці",
+                  "type": "лек",
+                  "location": "3. 218",
+                  "teacher_position": "доцент",
+                  "teacher_name": "Федина В.П.",
+                  "shouldBeVisited": true,
+                  "class_link": "\n    <a href='https://classroom.google.com/u/1/c/NTQ1MzI3ODIyNzk1'>class</a>",
+                  "meetLink": "\n    <a href='https://meet.google.com/gui-yuww-uyn'>meet</a>"
+                }
+              ]
+            },
+            {
+              "day_name": "Субота",
+              "classes": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

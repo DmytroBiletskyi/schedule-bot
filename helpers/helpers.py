@@ -1,0 +1,76 @@
+import calendar
+import json
+from datetime import datetime, timedelta, date
+
+
+def get_week_num(day: int, month: int, year: int) -> int:
+    calendar_ = calendar.TextCalendar(calendar.MONDAY)
+    lines = calendar_.formatmonth(year, month).split('\n')
+    days_by_week = [week.lstrip().split() for week in lines[2:]]
+    str_day = str(day)
+    week_num = 1
+    for index, week in enumerate(days_by_week):
+        if str_day in week:
+            if (index + 1) % 2 == 0:
+                week_num = 2
+            return week_num
+
+
+def getDecodedSchedule(search_group=1):
+    schedule_arr = {}
+    data = []
+    try:
+        with open('./static/schedule1.json') as new_file:
+            data = json.load(new_file)
+    except Exception as e:
+        print('sheet' + str(e))
+    if data is None or len(data) == 0:
+        json_string = '{ "potok_name": "ФККПІ 442", "groups": [ { "group_number": 1, "weeks": [ { "week_number": 1, "week_days": [ { "day_name": "Понеділок", "classes": [ { "number": 3, "name": "Безпека інформаційно-комунікаційних систем та мере", "type": "лаб", "location": "11. 302", "teacher_position": "доцент", "teacher_name": "Висоцька О.О.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 4, "name": "Основи побудови комунікаційних систем на базі обла", "type": "лек", "location": "1. 001", "teacher_position": "доцент", "teacher_name": "Єлізаров А.Б.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 5, "name": "Безпека інформаційно-комунікаційних систем та мере", "type": "лек", "location": "4. 204", "teacher_position": "доцент", "teacher_name": "Висоцька О.О.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Вівторок", "classes": [ { "number": 2, "name": "Основи охорони праці", "type": "лаб", "location": "7. 410", "teacher_position": "асистент", "teacher_name": "Якимець І.В.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 3, "name": "Основи побудови комунікаційних систем на базі обла", "type": "лаб", "location": "11. 115", "teacher_position": "асистент", "teacher_name": "Галата Л.П.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 4, "name": "Авіаційна безпека та кібербезпека авіаційних інфор", "type": "лаб", "location": "11. 419", "teacher_position": "старший викл", "teacher_name": "Лозова І.Л.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 5, "name": "Авіаційна безпека та кібербезпека авіаційних інфор", "type": "лаб", "location": "11. 419", "teacher_position": "старший викл", "teacher_name": "Лозова І.Л.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Середа", "classes": [ { "number": 6, "name": "Системи технічного захисту інформації", "type": "лек", "location": "11. 111", "teacher_position": "доцент", "teacher_name": "Німченко Т.В.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Четвер", "classes": [ { "number": 4, "name": "Прикладна криптологія", "type": "лек", "location": "1. 002", "teacher_position": "доцент", "teacher_name": "Ільєнко А.В.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 5, "name": "Операційні системи та технології їх захисту ", "type": "лек", "location": "1. 002", "teacher_position": "доцент", "teacher_name": "Гулак Н.К.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Пятниця", "classes": [ { "number": 4, "name": "Основи охорони праці", "type": "лек", "location": "3. 218", "teacher_position": "доцент", "teacher_name": "Федина В.П.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 5, "name": "Захищені мережеві протоколи", "type": "лек", "location": "11. 111", "teacher_position": "доцент", "teacher_name": "Сидоренко В.М.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 6, "name": "Захищені мережеві протоколи", "type": "лаб", "location": "11. 004", "teacher_position": "доцент", "teacher_name": "Сидоренко В.М.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Субота", "classes": [] } ] }, { "week_number": 2, "week_days": [ { "day_name": "Понеділок", "classes": [ { "number": 4, "name": "Основи побудови комунікаційних систем на базі обла", "type": "лек", "location": "1. 001", "teacher_position": "доцент", "teacher_name": "Єлізаров А.Б.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 5, "name": "Безпека інформаційно-комунікаційних систем та мере", "type": "лек", "location": "4. 204", "teacher_position": "доцент", "teacher_name": "Висоцька О.О.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Вівторок", "classes": [ { "number": 2, "name": "Операційні системи та технології їх захисту ", "type": "лаб", "location": "11. 302", "teacher_position": "доцент", "teacher_name": "Гулак Н.К.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 3, "name": "Прикладна криптологія", "type": "лаб", "location": "11. 417", "teacher_position": "асистент", "teacher_name": "Прокопенко О.В.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 4, "name": "Системи технічного захисту інформації", "type": "лаб", "location": "11. 107", "teacher_position": "асистент", "teacher_name": "Моржова Л.І.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Середа", "classes": [ { "number": 5, "name": "Авіаційна безпека та кібербезпека авіаційних інфор", "type": "лек", "location": "11. 111", "teacher_position": "зав. кафедри", "teacher_name": "Корченко О.Г.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 6, "name": "Системи технічного захисту інформації", "type": "лек", "location": "11. 111", "teacher_position": "доцент", "teacher_name": "Німченко Т.В.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Четвер", "classes": [ { "number": 4, "name": "Прикладна криптологія", "type": "лек", "location": "1. 002", "teacher_position": "доцент", "teacher_name": "Ільєнко А.В.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 5, "name": "Операційні системи та технології їх захисту ", "type": "лек", "location": "1. 002", "teacher_position": "доцент", "teacher_name": "Гулак Н.К.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Пятниця", "classes": [ { "number": 4, "name": "Захищені мережеві протоколи", "type": "лек", "location": "11. 111", "teacher_position": "доцент", "teacher_name": "Сидоренко В.М.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 5, "name": "Основи охорони праці", "type": "лек", "location": "3. 218", "teacher_position": "доцент", "teacher_name": "Федина В.П.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Субота", "classes": [] } ] } ] }, { "group_number": 2, "weeks": [ { "week_number": 1, "week_days": [ { "day_name": "Понеділок", "classes": [ { "number": 4, "name": "Основи побудови комунікаційних систем на базі обла", "type": "лек", "location": "1. 001", "teacher_position": "доцент", "teacher_name": "Єлізаров А.Б.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 5, "name": "Безпека інформаційно-комунікаційних систем та мере", "type": "лек", "location": "4. 204", "teacher_position": "доцент", "teacher_name": "Висоцька О.О.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 6, "name": "Безпека інформаційно-комунікаційних систем та мере", "type": "лаб", "location": "11. 302", "teacher_position": "доцент", "teacher_name": "Висоцька О.О.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Вівторок", "classes": [ { "number": 3, "name": "Системи технічного захисту інформації", "type": "лаб", "location": "11. 107", "teacher_position": "асистент", "teacher_name": "Моржова Л.І.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 4, "name": "Основи побудови комунікаційних систем на базі обла", "type": "лаб", "location": "11. 115", "teacher_position": "асистент", "teacher_name": "Галата Л.П.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 5, "name": "Захищені мережеві протоколи", "type": "лаб", "location": "11. 004", "teacher_position": "доцент", "teacher_name": "Сидоренко В.М.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Середа", "classes": [ { "number": 6, "name": "Системи технічного захисту інформації", "type": "лек", "location": "11. 111", "teacher_position": "доцент", "teacher_name": "Німченко Т.В.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Четвер", "classes": [ { "number": 4, "name": "Прикладна криптологія", "type": "лек", "location": "1. 002", "teacher_position": "доцент", "teacher_name": "Ільєнко А.В.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 5, "name": "Операційні системи та технології їх захисту ", "type": "лек", "location": "1. 002", "teacher_position": "доцент", "teacher_name": "Гулак Н.К.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Пятниця", "classes": [ { "number": 4, "name": "Основи охорони праці", "type": "лек", "location": "3. 218", "teacher_position": "доцент", "teacher_name": "Федина В.П.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 5, "name": "Захищені мережеві протоколи", "type": "лек", "location": "11. 111", "teacher_position": "доцент", "teacher_name": "Сидоренко В.М.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Субота", "classes": [] } ] }, { "week_number": 2, "week_days": [ { "day_name": "Понеділок", "classes": [ { "number": 4, "name": "Основи побудови комунікаційних систем на базі обла", "type": "лек", "location": "1. 001", "teacher_position": "доцент", "teacher_name": "Єлізаров А.Б.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 5, "name": "Безпека інформаційно-комунікаційних систем та мере", "type": "лек", "location": "4. 204", "teacher_position": "доцент", "teacher_name": "Висоцька О.О.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Вівторок", "classes": [ { "number": 2, "name": "Прикладна криптологія", "type": "лаб", "location": "11. 417", "teacher_position": "асистент", "teacher_name": "Прокопенко О.В.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 3, "name": "Операційні системи та технології їх захисту ", "type": "лаб", "location": "11. 302", "teacher_position": "доцент", "teacher_name": "Гулак Н.К.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 4, "name": "Авіаційна безпека та кібербезпека авіаційних інфор", "type": "лаб", "location": "11. 419", "teacher_position": "старший викл", "teacher_name": "Лозова І.Л.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 5, "name": "Авіаційна безпека та кібербезпека авіаційних інфор", "type": "лаб", "location": "11. 419", "teacher_position": "старший викл", "teacher_name": "Лозова І.Л.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Середа", "classes": [ { "number": 5, "name": "Авіаційна безпека та кібербезпека авіаційних інфор", "type": "лек", "location": "11. 111", "teacher_position": "зав. кафедри", "teacher_name": "Корченко О.Г.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 6, "name": "Системи технічного захисту інформації", "type": "лек", "location": "11. 111", "teacher_position": "доцент", "teacher_name": "Німченко Т.В.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Четвер", "classes": [ { "number": 4, "name": "Прикладна криптологія", "type": "лек", "location": "1. 002", "teacher_position": "доцент", "teacher_name": "Ільєнко А.В.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 5, "name": "Операційні системи та технології їх захисту ", "type": "лек", "location": "1. 002", "teacher_position": "доцент", "teacher_name": "Гулак Н.К.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Пятниця", "classes": [ { "number": 3, "name": "Основи охорони праці", "type": "лаб", "location": "7. 410", "teacher_position": "асистент", "teacher_name": "Якимець І.В.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 4, "name": "Захищені мережеві протоколи", "type": "лек", "location": "11. 111", "teacher_position": "доцент", "teacher_name": "Сидоренко В.М.", "shouldBeVisited": true, "class_link": "", "meetLink": "" }, { "number": 5, "name": "Основи охорони праці", "type": "лек", "location": "3. 218", "teacher_position": "доцент", "teacher_name": "Федина В.П.", "shouldBeVisited": true, "class_link": "", "meetLink": "" } ] }, { "day_name": "Субота", "classes": [] } ] } ] } ] }'
+        data = json.loads(json_string)
+
+    groups = data['groups']
+    for group in groups:
+        group_num = group['group_number']
+        if group_num != search_group:
+            continue
+        weeks = group['weeks']
+        schedule_arr['weeks'] = weeks
+    return schedule_arr['weeks']
+
+def getNextSaturdayDate():
+    today = date.today()
+    today_date = date(today.year, today.month, today.day)
+    days_to_saturday = (12 if today_date.weekday() == 6 else 5) - today_date.weekday()
+    saturday_date = today_date + timedelta(days_to_saturday)
+    return saturday_date
+
+
+def getSaturdayData(saturday_date):
+    # {date_postponed_to: {week_num:num, day_name}
+    postponed_dates = {
+        date(2022, 8, 27): {"week_num": 2, "day_name": "Четвер", "postponed_from": date(2022, 12, 1)},
+        date(2022, 9, 3): {"week_num": 2, "day_name": "Пятниця", "postponed_from": date(2022, 12, 2)},
+        date(2022, 9, 10): {"week_num": 1, "day_name": "Понеділок", "postponed_from": date(2022, 12, 5)},
+        date(2022, 9, 17): {"week_num": 1, "day_name": "Вівторок", "postponed_from": date(2022, 12, 6)},
+        date(2022, 9, 24): {"week_num": 1, "day_name": "Середа", "postponed_from": date(2022, 12, 7)},
+        date(2022, 10, 1): {"week_num": 1, "day_name": "Четвер", "postponed_from": date(2022, 12, 8)},
+        date(2022, 10, 8): {"week_num": 1, "day_name": "Пятниця", "postponed_from": date(2022, 12, 9)},
+        date(2022, 10, 15): {"week_num": 2, "day_name": "Понеділок", "postponed_from": date(2022, 12, 12)},
+        date(2022, 10, 22): {"week_num": 2, "day_name": "Вівторок", "postponed_from": date(2022, 12, 13)},
+        date(2022, 10, 29): {"week_num": 2, "day_name": "Середа", "postponed_from": date(2022, 12, 14)},
+        date(2022, 11, 5): {"week_num": 2, "day_name": "Четвер", "postponed_from": date(2022, 12, 15)},
+        date(2022, 11, 12): {"week_num": 2, "day_name": "Пятниця", "postponed_from": date(2022, 12, 16)},
+    }
+    if saturday_date in postponed_dates.keys():
+        return postponed_dates[saturday_date]
+    else:
+        return False
+
+
+def getClassesStr(day_classes: list):
+    reply = ''
+    if day_classes:
+        for clas in day_classes:
+            reply += str(clas) + '\n'
+    return reply
+
